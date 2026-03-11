@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL-Answers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <h1 class="app-title">URL-Answers</h1>
+      <p class="login-subtitle">Sign in with your research account.</p>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn primary-btn full-width" id="login-button">
+          Continue
+        </button>
+        <p id="login-error" class="error-text"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div>
+          <div class="sidebar-app-title">URL-Answers</div>
+          <div class="sidebar-app-subtitle">Paste a URL. Get the answers.</div>
+        </div>
+      </div>
+
+      <button id="logout-btn" class="btn logout-btn full-width">
+        Sign Out
+      </button>
+
+      <button id="new-chat-btn" class="btn secondary-btn full-width new-chat-btn">
+        + New Chat
+      </button>
+
+      <div class="sidebar-chats-header">
+        <span>Chats</span>
+        <button id="refresh-chats-btn" class="icon-btn" title="Refresh chats">
+          &#10227;
+        </button>
+      </div>
+
+      <div id="chat-list" class="chat-list">
+        <!-- Chat items injected here -->
+      </div>
+    </aside>
+
+    <!-- Chat Window -->
+    <main class="chat-window">
+      <header class="chat-header">
+        <div>
+          <h2 id="chat-title" class="chat-title">Welcome</h2>
+          <p id="chat-subtitle" class="chat-subtitle">
+            Create a new research chat with URLs to begin.
+          </p>
+        </div>
+      </header>
+
+      <section id="chat-messages" class="chat-messages">
+        <!-- Messages injected here -->
+        <div class="helper-text center">
+          No chat selected. Create a new research chat from the sidebar.
+        </div>
+      </section>
+
+      <div class="chat-input-bar">
+        <div class="chat-input-wrapper">
+          <textarea
+            id="message-input"
+            class="chat-input"
+            rows="1"
+            placeholder="Ask a question about the research URLs..."
+          ></textarea>
+        </div>
+        <button id="send-btn" class="btn primary-btn send-btn" disabled>Send</button>
+      </div>
+
+      <div id="loading-indicator" class="loading-indicator hidden">
+        <span class="dots">
+          <span>.</span><span>.</span><span>.</span>
+        </span>
+        <span>AI is thinking...</span>
+      </div>
+
+      <p id="chat-error" class="error-text chat-error"></p>
+    </main>
+  </div>
+
+  <!-- New Chat Modal -->
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create Research Chat</h2>
+        <button id="close-modal-btn" class="icon-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="urls-input">Enter URLs separated by commas</label>
+        <textarea
+          id="urls-input"
+          class="urls-input"
+          rows="4"
+          placeholder="https://example.com/article1, https://example.com/article2"
+        ></textarea>
+        <p class="helper-text">
+          Paste one or more URLs. The AI will process these pages and answer questions about them.
+        </p>
+        <p id="new-chat-error" class="error-text"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="create-chat-btn" class="btn primary-btn">Create Chat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZmdvBvz_ztE_00AgL_XOCaakV8JpSdqo",
+      authDomain: "rag-chat-app-b10e2.firebaseapp.com",
+      projectId: "rag-chat-app-b10e2",
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

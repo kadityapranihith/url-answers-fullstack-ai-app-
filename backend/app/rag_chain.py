@@ -5,7 +5,7 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
@@ -13,9 +13,6 @@ load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
 
 # Embeddings
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
 
 # LLM
 llm = ChatGroq(
@@ -59,6 +56,15 @@ Answer:
 
 """
 )
+embedding_model = None
+
+def get_embedding_model():
+    global embedding_model
+    if embedding_model is None:
+        embedding_model = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
+    return embedding_model
 
 # -------- Create Vectorstore from URLs --------
 def create_vectorstore_from_urls(urls):
@@ -71,7 +77,7 @@ def create_vectorstore_from_urls(urls):
     )
     chunks = splitter.split_documents(docs)
 
-    vectorstore = FAISS.from_documents(chunks, embedding_model)
+    vectorstore = FAISS.from_documents(chunks, get_embedding_model())
     return vectorstore
 
 # -------- RAG Query --------

@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://url-answers.onrender.com";
+const API_BASE_URL = "https://url-answers.vercel.app";
 
 // State
 let chats = [];

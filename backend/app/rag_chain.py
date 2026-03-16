@@ -5,14 +5,15 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.embeddings import JinaEmbeddings
 
 load_dotenv()
 
 groq_api_key = os.getenv("GROQ_API_KEY")
 
 # Embeddings
+
 
 # LLM
 llm = ChatGroq(
@@ -61,13 +62,15 @@ embedding_model = None
 def get_embedding_model():
     global embedding_model
     if embedding_model is None:
-        embedding_model = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        embedding_model = JinaEmbeddings(
+            model_name="jina-embeddings-v2-base-en",
+            jina_api_key=os.getenv("JINA_API_KEY")
         )
     return embedding_model
 
 # -------- Create Vectorstore from URLs --------
 def create_vectorstore_from_urls(urls):
+
     loader = WebBaseLoader(urls)
     docs = loader.load()
 

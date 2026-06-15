@@ -4,11 +4,17 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.embeddings import JinaEmbeddings
 
+from langchain_qdrant import QdrantVectorStore
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams
 load_dotenv()
+qdrant_client = QdrantClient(
+    url=os.getenv("QDRANT_URL"),
+    api_key=os.getenv("QDRANT_API_KEY")
+)
 
 groq_api_key = os.getenv("GROQ_API_KEY")
 
@@ -69,22 +75,49 @@ def get_embedding_model():
     return embedding_model
 
 # -------- Create Vectorstore from URLs --------
-def create_vectorstore_from_urls(urls):
+import gc
+
+def create_vectorstore_from_urls(urls, collection_name):
 
     loader = WebBaseLoader(urls)
+
     docs = loader.load()
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
+        chunk_size=1500,
+        chunk_overlap=100
     )
-    chunks = splitter.split_documents(docs)
 
-    vectorstore = FAISS.from_documents(chunks, get_embedding_model())
-    return vectorstore
+    chunks = splitter.split_documents(docs)
+    if not qdrant_client.collection_exists(collection_name):
+        qdrant_client.recreate_collection(
+            collection_name=collection_name,
+            vectors_config=VectorParams(
+                size=768,
+                distance=Distance.COSINE
+            )
+        )
+
+    QdrantVectorStore.from_documents(
+        documents=chunks,
+        embedding=get_embedding_model(),
+        url=os.getenv("QDRANT_URL"),
+        api_key=os.getenv("QDRANT_API_KEY"),
+        collection_name=collection_name
+    )
+
+    del docs
+    del chunks
+
+    gc.collect()
 
 # -------- RAG Query --------
-def get_rag_response(vectorstore, question, history=""):
+def get_rag_response(collection_name, question, history=""):
+    vectorstore = QdrantVectorStore(
+        client=qdrant_client,
+        collection_name=collection_name,
+        embedding=get_embedding_model()
+    )
     retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
     docs = retriever.invoke(question)
 

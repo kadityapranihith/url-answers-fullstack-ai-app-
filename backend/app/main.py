@@ -4,7 +4,7 @@ import uuid
 from fastapi import Request
 from app.auth import verify_token
 from fastapi.middleware.cors import CORSMiddleware
-from app.rag_chain import create_vectorstore_from_urls, get_rag_response
+from app.rag_chain import create_vectorstore_from_urls, get_rag_response,qdrant_client
 from app.database import (
     create_chat,
     save_message,
@@ -25,9 +25,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# Keep only one active vectorstore in RAM
 
-# In-memory FAISS storage
-chat_vectorstores = {}
 
 # -----------------------------
 # Request Models
@@ -61,9 +60,10 @@ def process_urls(request: URLRequest, req: Request):
 
     chat_id = str(uuid.uuid4())
 
-    vectorstore = create_vectorstore_from_urls(request.urls)
-
-    chat_vectorstores[chat_id] = vectorstore
+    create_vectorstore_from_urls(
+        request.urls,
+        chat_id
+    )
 
     create_chat(user_id, chat_id, request.urls)
 
@@ -83,17 +83,7 @@ def chat(request: ChatRequest, req: Request):
     user_id = verify_token(req)
 
     # Get vectorstore
-    vectorstore = chat_vectorstores.get(request.chat_id)
 
-    if not vectorstore:
-
-        chat_data = get_chat_history(user_id, request.chat_id)
-
-        urls = chat_data.get("urls", [])
-
-        vectorstore = create_vectorstore_from_urls(urls)
-
-        chat_vectorstores[request.chat_id] = vectorstore
 
 
     # -----------------------------
@@ -115,7 +105,7 @@ def chat(request: ChatRequest, req: Request):
     # -----------------------------
 
     response = get_rag_response(
-        vectorstore,
+        request.chat_id,
         request.message,
         history
     )
@@ -182,7 +172,11 @@ def delete_chat(chat_id: str, req: Request):
 
     chat_ref.delete()
 
-    if chat_id in chat_vectorstores:
-        del chat_vectorstores[chat_id]
+    try:
+        qdrant_client.delete_collection(
+            collection_name=chat_id
+        )
+    except Exception as e:
+        print(e)
 
     return {"message": "Chat deleted"}

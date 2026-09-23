@@ -89,6 +89,10 @@ def create_vectorstore_from_urls(urls, collection_name):
     )
 
     chunks = splitter.split_documents(docs)
+
+    for i, chunk in enumerate(chunks):
+        chunk.metadata["chunk_id"] = i
+
     if not qdrant_client.collection_exists(collection_name):
         qdrant_client.recreate_collection(
             collection_name=collection_name,
@@ -111,15 +115,28 @@ def create_vectorstore_from_urls(urls, collection_name):
 
     gc.collect()
 
-# -------- RAG Query --------
-def get_rag_response(collection_name, question, history=""):
+# -------- Retrieval --------
+def retrieve_documents(collection_name, question, k=10):
     vectorstore = QdrantVectorStore(
         client=qdrant_client,
         collection_name=collection_name,
         embedding=get_embedding_model()
     )
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+
+    retriever = vectorstore.as_retriever(
+        search_kwargs={"k": k}
+    )
+
     docs = retriever.invoke(question)
+
+    return docs
+# -------- RAG Query --------
+def get_rag_response(collection_name, question, history=""):
+    docs = retrieve_documents(
+        collection_name,
+        question,
+        k=4
+    )
 
     context = "\n\n".join(doc.page_content for doc in docs)
 

@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "url": "https://en.wikipedia.org/wiki/Mahesh_Babu",
+    "question": "What was Mahesh Babu's first film as a child artist?",
+    "reference_answer": "Needa (1979)."
+  },
+  {
+    "id": 2,
+    "url": "https://en.wikipedia.org/wiki/Mahesh_Babu",
+    "question": "In which year did Mahesh Babu make his debut as a lead actor?",
+    "reference_answer": "1999, with the film Rajakumarudu."
+  },
+  {
+    "id": 3,
+    "url": "https://en.wikipedia.org/wiki/Mahesh_Babu",
+    "question": "Which film earned Mahesh Babu his first Filmfare Award for Best Actor – Telugu?",
+    "reference_answer": "Okkadu (2003)."
+  },
+  {
+    "id": 4,
+    "url": "https://en.wikipedia.org/wiki/Mahesh_Babu",
+    "question": "What is the name of Mahesh Babu's production house?",
+    "reference_answer": "G. Mahesh Babu Entertainment."
+  },
+  {
+    "id": 5,
+    "url": "https://en.wikipedia.org/wiki/Mahesh_Babu",
+    "question": "Whom did Mahesh Babu marry?",
+    "reference_answer": "Actress Namrata Shirodkar."
+  },
+  {
+    "id": 6,
+    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr.",
+    "question": "When was N. T. Rama Rao Jr. born?",
+    "reference_answer": "20 May 1983."
+  },
+  {
+    "id": 7,
+    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr.",
+    "question": "What was N. T. Rama Rao Jr.'s first film as a lead actor?",
+    "reference_answer": "Ninnu Choodalani (2001)."
+  },
+  {
+    "id": 8,
+    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr.",
+    "question": "Which film gave N. T. Rama Rao Jr. his major breakthrough?",
+    "reference_answer": "Aadi (2002)."
+  },
+  {
+    "id": 9,
+    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr.",
+    "question": "Which character did N. T. Rama Rao Jr. portray in RRR?",
+    "reference_answer": "Komaram Bheem."
+  },
+  {
+    "id": 10,
+    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr.",
+    "question": "Who is N. T. Rama Rao Jr.'s wife?",
+    "reference_answer": "Lakshmi Pranathi."
+  },
+  {
+    "id": 11,
+    "url": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+    "question": "What was the main objective of the Indian independence movement?",
+    "reference_answer": "To end British rule in India and achieve independence."
+  },
+  {
+    "id": 12,
+    "url": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+    "question": "Which major movement was launched by Mahatma Gandhi in 1942 demanding an end to British rule?",
+    "reference_answer": "The Quit India Movement."
+  },
+  {
+    "id": 13,
+    "url": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+    "question": "Who founded the Indian National Congress in 1885?",
+    "reference_answer": "Allan Octavian Hume, along with other early leaders."
+  },
+  {
+    "id": 14,
+    "url": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+    "question": "What event in 1919 became a major turning point in the Indian independence movement?",
+    "reference_answer": "The Jallianwala Bagh massacre."
+  },
+  {
+    "id": 15,
+    "url": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+    "question": "In which year did India gain independence from British rule?",
+    "reference_answer": "1947."
+  },
+  {
+    "id": 16,
+    "url": "https://en.wikipedia.org/wiki/Killing_of_the_Clancy_children",
+    "question": "Who were the Clancy children?",
+    "reference_answer": "They were the five children of Lindsay Clancy and Patrick Clancy: Cora, Dawson, Callan, and twins Brinley and Ryan."
+  },
+  {
+    "id": 17,
+    "url": "https://en.wikipedia.org/wiki/Killing_of_the_Clancy_children",
+    "question": "When did the killing of the Clancy children occur?",
+    "reference_answer": "January 24, 2023."
+  },
+  {
+    "id": 18,
+    "url": "https://en.wikipedia.org/wiki/Killing_of_the_Clancy_children",
+    "question": "Where did the killings take place?",
+    "reference_answer": "At the Clancy family's home in Duxbury, Massachusetts, United States."
+  },
+  {
+    "id": 19,
+    "url": "https://en.wikipedia.org/wiki/Killing_of_the_Clancy_children",
+    "question": "How many children were killed?",
+    "reference_answer": "Three children died, while two others survived the attack."
+  },
+  {
+    "id": 20,
+    "url": "https://en.wikipedia.org/wiki/Killing_of_the_Clancy_children",
+    "question": "Who was charged in connection with the deaths of the children?",
+    "reference_answer": "Their mother, Lindsay Clancy, was charged in connection with their deaths."
+  },
+  {
+    "id": 21,
+    "url": "https://en.wikipedia.org/wiki/September_11_attacks",
+    "question": "On what date did the September 11 attacks occur?",
+    "reference_answer": "September 11, 2001."
+  },
+  {
+    "id": 22,
+    "url": "https://en.wikipedia.org/wiki/September_11_attacks",
+    "question": "How many commercial airplanes were hijacked during the September 11 attacks?",
+    "reference_answer": "Four airplanes."
+  },
+  {
+    "id": 23,
+    "url": "https://en.wikipedia.org/wiki/September_11_attacks",
+    "question": "Which two buildings in New York City were struck by hijacked airplanes?",
+    "reference_answer": "The North Tower and South Tower of the World Trade Center."
+  },
+  {
+    "id": 24,
+    "url": "https://en.wikipedia.org/wiki/September_11_attacks",
+    "question": "Where did United Airlines Flight 93 crash?",
+    "reference_answer": "Near Shanksville, Pennsylvania."
+  },
+  {
+    "id": 25,
+    "url": "https://en.wikipedia.org/wiki/September_11_attacks",
+    "question": "Which organization was responsible for carrying out the September 11 attacks?",
+    "reference_answer": "Al-Qaeda."
+  },
+  {
+    "id": 26,
+    "url": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+    "question": "What is Hanuman Ansh?",
+    "reference_answer": "Hanuman Ansh is an Indian television series."
+  },
+  {
+    "id": 27,
+    "url": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+    "question": "Which language is Hanuman Ansh produced in?",
+    "reference_answer": "Hindi."
+  },
+  {
+    "id": 28,
+    "url": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+    "question": "Which Hindu deity is the series Hanuman Ansh based on?",
+    "reference_answer": "Lord Hanuman."
+  },
+  {
+    "id": 29,
+    "url": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+    "question": "On which television channel was Hanuman Ansh broadcast?",
+    "reference_answer": "Sony SAB."
+  },
+  {
+    "id": 30,
+    "url": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+    "question": "What type of stories does Hanuman Ansh primarily depict?",
+    "reference_answer": "Stories and adventures centered around Lord Hanuman."
+  },
+  {
+    "id": 31,
+    "url": "https://en.wikipedia.org/wiki/Alternative_for_Germany",
+    "question": "What issue was central to the AfD's original political platform when the party was founded in 2013?",
+    "reference_answer": "Opposition to the policies surrounding the eurozone and European bailouts."
+  },
+  {
+    "id": 32,
+    "url": "https://en.wikipedia.org/wiki/Alternative_for_Germany",
+    "question": "How did the AfD's political positioning change after the European refugee crisis began in 2015?",
+    "reference_answer": "Its politics shifted further to the right, with increased emphasis on opposition to immigration and Islam, German nationalism, right-wing populism, and Euroscepticism."
+  },
+  {
+    "id": 33,
+    "url": "https://en.wikipedia.org/wiki/Alternative_for_Germany",
+    "question": "Why did Bernd Lucke leave the AfD in 2015, according to accounts of the party's development?",
+    "reference_answer": "He left amid concerns that the party was moving away from its original economically liberal and Eurosceptic orientation toward a more right-wing political direction."
+  },
+  {
+    "id": 34,
+    "url": "https://en.wikipedia.org/wiki/Alternative_for_Germany",
+    "question": "What was significant about the AfD's result in the 2013 German federal election?",
+    "reference_answer": "It received 4.7% of the party-list vote, narrowly missing the 5% threshold required for parliamentary representation."
+  },
+  {
+    "id": 35,
+    "url": "https://en.wikipedia.org/wiki/Alternative_for_Germany",
+    "question": "What happened to the AfD's classification by Germany's Federal Office for the Protection of the Constitution in 2025, and what later changed in 2026?",
+    "reference_answer": "In 2025, the BfV classified the AfD as a confirmed right-wing extremist endeavor; in 2026, that classification was suspended following a court injunction."
+  },
+  {
+    "id": 36,
+    "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan",
+    "question": "How did the Soviet–Afghan War contribute to the development of militant networks that later affected Pakistan?",
+    "reference_answer": "The war contributed to the growth of Islamist militant networks, weapons proliferation, and the movement of foreign fighters through the region, creating conditions that later contributed to militancy and terrorism in Pakistan."
+  },
+  {
+    "id": 37,
+    "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan",
+    "question": "What factors contributed to the rise of the Tehrik-i-Taliban Pakistan (TTP) in the 2000s?",
+    "reference_answer": "The TTP emerged from an alliance of Pakistani Taliban factions amid increasing militancy, Pakistan's military operations in the tribal areas, and the broader effects of the war in Afghanistan."
+  },
+  {
+    "id": 38,
+    "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan",
+    "question": "Why is the 2007 assassination of Benazir Bhutto considered a significant event in the history of terrorism in Pakistan?",
+    "reference_answer": "Her assassination was a major political assassination attributed by Pakistani authorities to militant actors and occurred during a period of intense terrorist violence and political instability."
+  },
+  {
+    "id": 39,
+    "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan",
+    "question": "How did the 2014 Peshawar school attack influence Pakistan's counterterrorism policies?",
+    "reference_answer": "The attack prompted a major strengthening of Pakistan's counterterrorism response, including the National Action Plan and renewed military efforts against militant organizations."
+  },
+  {
+    "id": 40,
+    "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan",
+    "question": "What broad trend in terrorism-related violence in Pakistan occurred after the peak of violence in the late 2000s and early 2010s?",
+    "reference_answer": "Terrorist violence declined substantially for several years following intensified military and security operations, although militant attacks later increased again."
+  },
+  {
+    "id": 41,
+    "url": "https://en.wikipedia.org/wiki/Vegetarian_cuisine",
+    "question": "How does vegetarian cuisine differ from vegan cuisine in terms of the foods that may be included?",
+    "reference_answer": "Vegetarian cuisine excludes meat, poultry, and fish, while vegan cuisine additionally excludes animal-derived products such as eggs, dairy, and honey."
+  },
+  {
+    "id": 42,
+    "url": "https://en.wikipedia.org/wiki/Vegetarian_cuisine",
+    "question": "Why can the definition of vegetarian cuisine vary between different cultural or dietary traditions?",
+    "reference_answer": "Different traditions define which animal-derived foods are acceptable differently; for example, some vegetarian diets include dairy and eggs, while others exclude one or both."
+  },
+  {
+    "id": 43,
+    "url": "https://en.wikipedia.org/wiki/Vegetarian_cuisine",
+    "question": "What are some major categories of foods commonly used as protein sources in vegetarian cuisine?",
+    "reference_answer": "Common sources include legumes such as beans, lentils, and peas, as well as soy products, nuts, seeds, and certain dairy or egg products depending on the type of vegetarian diet."
+  },
+  {
+    "id": 44,
+    "url": "https://en.wikipedia.org/wiki/Vegetarian_cuisine",
+    "question": "How have religious traditions influenced the development of vegetarian cuisine in South Asia?",
+    "reference_answer": "Religious traditions including Hinduism, Jainism, and Buddhism have influenced vegetarian practices and helped shape diverse vegetarian cuisines across South Asia."
+  },
+  {
+    "id": 45,
+    "url": "https://en.wikipedia.org/wiki/Vegetarian_cuisine",
+    "question": "Why does vegetarian cuisine include such a wide variety of dishes despite excluding meat?",
+    "reference_answer": "Vegetarian cuisines have developed across many cultures and use diverse ingredients such as grains, vegetables, fruits, legumes, nuts, seeds, dairy products, and spices, resulting in a wide range of traditional dishes."
+  },
+  {
+    "id": 46,
+    "url": "https://en.wikipedia.org/wiki/Telangana_movement",
+    "question": "What were the main political and economic grievances that fueled the Telangana movement against the erstwhile Andhra Pradesh?",
+    "reference_answer": "The movement was driven by concerns over perceived economic and political disparities, including the allocation of government jobs, public expenditure, education, and development opportunities between Telangana and the Andhra regions."
+  },
+  {
+    "id": 47,
+    "url": "https://en.wikipedia.org/wiki/Telangana_movement",
+    "question": "What was the significance of the Gentlemen's Agreement of 1956 in the context of the Telangana movement?",
+    "reference_answer": "It contained safeguards intended to protect Telangana's interests when Hyderabad State's Telugu-speaking areas were merged with Andhra State to form Andhra Pradesh."
+  },
+  {
+    "id": 48,
+    "url": "https://en.wikipedia.org/wiki/Telangana_movement",
+    "question": "How did the 1969 Jai Telangana movement differ from the later phase of the Telangana statehood movement?",
+    "reference_answer": "The 1969 movement was an earlier mass agitation demanding safeguards and a separate Telangana state, whereas the later movement, particularly from the 2000s onward, developed into a sustained political campaign that ultimately resulted in the creation of Telangana in 2014."
+  },
+  {
+    "id": 49,
+    "url": "https://en.wikipedia.org/wiki/Telangana_movement",
+    "question": "What role did the Telangana Rashtra Samithi play in the later stages of the movement?",
+    "reference_answer": "Founded by K. Chandrashekar Rao in 2001, the Telangana Rashtra Samithi became the principal political party campaigning for a separate Telangana state and played a major role in sustaining the movement."
+  },
+  {
+    "id": 50,
+    "url": "https://en.wikipedia.org/wiki/Telangana_movement",
+    "question": "What political development ultimately brought the Telangana movement's demand for statehood to fruition?",
+    "reference_answer": "The Andhra Pradesh Reorganisation Act, 2014 led to the creation of Telangana as a separate state from the former Andhra Pradesh on 2 June 2014."
+  }
+]

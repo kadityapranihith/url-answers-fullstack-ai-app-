@@ -1,0 +1,39 @@
+{
+  "evaluation_set_size": 50,
+  "retrieved_chunks_judged": 500,
+  "relevant_chunks": 154,
+  "non_relevant_chunks": 346,
+  "annotation_type": "binary semantic human-style relevance judgment",
+  "relevance_rule": "1 when the chunk materially helps answer the question; 0 otherwise",
+  "metrics": [
+    {
+      "k": 1,
+      "hit_rate": 0.64,
+      "precision": 0.64,
+      "mrr": 0.64,
+      "ndcg": 0.64
+    },
+    {
+      "k": 3,
+      "hit_rate": 0.92,
+      "precision": 0.5066666666666666,
+      "mrr": 0.77,
+      "ndcg": 0.8105931093553133
+    },
+    {
+      "k": 5,
+      "hit_rate": 0.92,
+      "precision": 0.41600000000000004,
+      "mrr": 0.77,
+      "ndcg": 0.7950368478871074
+    },
+    {
+      "k": 10,
+      "hit_rate": 0.94,
+      "precision": 0.308,
+      "mrr": 0.7733333333333333,
+      "ndcg": 0.7768036260099528
+    }
+  ],
+  "recall_note": "True corpus Recall@K is not reported because only the retrieved top-10 pool was judged; all relevant chunks in the full corpus were not exhaustively labeled. Hit Rate@K is therefore the safer question-level retrieval metric here."
+}

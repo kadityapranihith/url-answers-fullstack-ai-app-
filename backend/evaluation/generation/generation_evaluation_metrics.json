@@ -1,0 +1,34 @@
+{
+  "questions": 50,
+  "scale": "0-2 per dimension",
+  "rubric": {
+    "correctness": "2 fully correct, 1 partial/ambiguous, 0 incorrect or failed to answer",
+    "faithfulness": "2 supported by retrieved context, 1 partly supported, 0 materially unsupported/hallucinated",
+    "answer_relevancy": "2 directly answers, 1 partly relevant, 0 fails to answer",
+    "context_utilization": "2 appropriately uses retrieved context or correctly abstains, 1 partial, 0 ignores/misuses available context"
+  },
+  "averages": {
+    "correctness": 74.0,
+    "faithfulness": 93.0,
+    "answer_relevancy": 98.0,
+    "context_utilization": 91.0
+  },
+  "overall_mean_score_pct": 89.0,
+  "notable_cases": [
+    8,
+    13,
+    16,
+    25,
+    26,
+    28,
+    29,
+    30,
+    35,
+    38,
+    39,
+    42,
+    44,
+    47
+  ],
+  "interpretation_note": "Correctness is lower partly because several questions are benchmark cases where the generated response either correctly abstains when the answer is absent from retrieved context, or follows retrieved context that conflicts with the supplied reference answer. Faithfulness should therefore be considered separately from correctness."
+}

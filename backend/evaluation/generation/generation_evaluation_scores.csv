@@ -1,0 +1,51 @@
+id,question,correctness_0_2,faithfulness_0_2,answer_relevancy_0_2,context_utilization_0_2,correctness_pct,faithfulness_pct,answer_relevancy_pct,context_utilization_pct,reason
+1,What was Mahesh Babu's first film as a child artist?,2,2,2,2,100.0,100.0,100.0,100.0,
+2,In which year did Mahesh Babu make his debut as a lead actor?,2,2,2,2,100.0,100.0,100.0,100.0,
+3,Which film earned Mahesh Babu his first Filmfare Award for Best Actor – Telugu?,2,2,2,2,100.0,100.0,100.0,100.0,
+4,What is the name of Mahesh Babu's production house?,2,2,2,2,100.0,100.0,100.0,100.0,
+5,Whom did Mahesh Babu marry?,2,2,2,2,100.0,100.0,100.0,100.0,
+6,When was N. T. Rama Rao Jr. born?,2,2,2,2,100.0,100.0,100.0,100.0,
+7,What was N. T. Rama Rao Jr.'s first film as a lead actor?,2,2,2,2,100.0,100.0,100.0,100.0,
+8,Which film gave N. T. Rama Rao Jr. his major breakthrough?,0,2,2,2,0.0,100.0,100.0,100.0,"Reference expects Aadi (2002), while retrieved context itself describes Student No: 1 as a breakthrough; this is a benchmark/source inconsistency worth reviewing."
+9,Which character did N. T. Rama Rao Jr. portray in RRR?,0,2,2,2,0.0,100.0,100.0,100.0,Correctly abstains because the retrieved context shown does not contain Komaram Bheem.
+10,Who is N. T. Rama Rao Jr.'s wife?,2,2,2,2,100.0,100.0,100.0,100.0,
+11,What was the main objective of the Indian independence movement?,2,2,2,2,100.0,100.0,100.0,100.0,
+12,Which major movement was launched by Mahatma Gandhi in 1942 demanding an end to British rule?,2,2,2,2,100.0,100.0,100.0,100.0,
+13,Who founded the Indian National Congress in 1885?,1,2,2,2,50.0,100.0,100.0,100.0,Partially correct: context says A.O. Hume inspired the 72 delegates who founded INC; the answer omits Hume.
+14,What event in 1919 became a major turning point in the Indian independence movement?,2,2,2,2,100.0,100.0,100.0,100.0,
+15,In which year did India gain independence from British rule?,2,2,2,2,100.0,100.0,100.0,100.0,
+16,Who were the Clancy children?,1,2,2,2,50.0,100.0,100.0,100.0,Correctly identifies the three killed children but omits the two surviving children named in the reference.
+17,When did the killing of the Clancy children occur?,2,2,2,2,100.0,100.0,100.0,100.0,
+18,Where did the killings take place?,2,2,2,2,100.0,100.0,100.0,100.0,
+19,How many children were killed?,2,2,2,2,100.0,100.0,100.0,100.0,
+20,Who was charged in connection with the deaths of the children?,2,2,2,2,100.0,100.0,100.0,100.0,
+21,On what date did the September 11 attacks occur?,2,2,2,2,100.0,100.0,100.0,100.0,
+22,How many commercial airplanes were hijacked during the September 11 attacks?,2,2,2,2,100.0,100.0,100.0,100.0,
+23,Which two buildings in New York City were struck by hijacked airplanes?,2,2,2,2,100.0,100.0,100.0,100.0,
+24,Where did United Airlines Flight 93 crash?,2,2,2,2,100.0,100.0,100.0,100.0,
+25,Which organization was responsible for carrying out the September 11 attacks?,0,0,2,0,0.0,0.0,100.0,0.0,"Hallucination: retrieved context explicitly states al-Qaeda, but the answer gives a different organization."
+26,What is Hanuman Ansh?,0,0,2,0,0.0,0.0,100.0,0.0,Incorrect answer and appears unsupported by the retrieved context; the context describes Hanuman Ansh as an Indian Hindi-language biographical film.
+27,Which language is Hanuman Ansh produced in?,2,2,2,2,100.0,100.0,100.0,100.0,
+28,Which Hindu deity is the series Hanuman Ansh based on?,0,2,2,2,0.0,100.0,100.0,100.0,The answer follows the retrieved context (Neem Karoli Baba) but conflicts with the supplied reference answer (Lord Hanuman); benchmark inconsistency.
+29,On which television channel was Hanuman Ansh broadcast?,0,2,2,2,0.0,100.0,100.0,100.0,Appropriate abstention: the retrieved context does not provide the TV channel.
+30,What type of stories does Hanuman Ansh primarily depict?,0,2,2,2,0.0,100.0,100.0,100.0,The answer follows the retrieved context (Neem Karoli Baba biography) but conflicts with the supplied reference answer; benchmark inconsistency.
+31,What issue was central to the AfD's original political platform when the party was founded in 2013?,2,2,2,2,100.0,100.0,100.0,100.0,
+32,How did the AfD's political positioning change after the European refugee crisis began in 2015?,2,2,2,2,100.0,100.0,100.0,100.0,
+33,"Why did Bernd Lucke leave the AfD in 2015, according to accounts of the party's development?",2,2,2,2,100.0,100.0,100.0,100.0,
+34,What was significant about the AfD's result in the 2013 German federal election?,2,2,2,2,100.0,100.0,100.0,100.0,
+35,"What happened to the AfD's classification by Germany's Federal Office for the Protection of the Constitution in 2025, and what later changed in 2026?",0,2,2,0,0.0,100.0,100.0,0.0,"The answer correctly refuses, but the retrieved context actually contains the 2025 BfV classification; therefore it missed available evidence."
+36,How did the Soviet–Afghan War contribute to the development of militant networks that later affected Pakistan?,2,2,2,2,100.0,100.0,100.0,100.0,
+37,What factors contributed to the rise of the Tehrik-i-Taliban Pakistan (TTP) in the 2000s?,2,2,2,2,100.0,100.0,100.0,100.0,
+38,Why is the 2007 assassination of Benazir Bhutto considered a significant event in the history of terrorism in Pakistan?,0,0,2,1,0.0,0.0,100.0,50.0,"The response adds major unsupported claims not established by the retrieved chunks, including the policy-impact narrative."
+39,How did the 2014 Peshawar school attack influence Pakistan's counterterrorism policies?,0,2,2,2,0.0,100.0,100.0,100.0,Appropriate abstention because the retrieved chunks shown do not establish the requested Peshawar-policy consequence.
+40,What broad trend in terrorism-related violence in Pakistan occurred after the peak of violence in the late 2000s and early 2010s?,2,2,2,2,100.0,100.0,100.0,100.0,
+41,How does vegetarian cuisine differ from vegan cuisine in terms of the foods that may be included?,2,2,2,2,100.0,100.0,100.0,100.0,
+42,Why can the definition of vegetarian cuisine vary between different cultural or dietary traditions?,2,1,2,2,100.0,50.0,100.0,100.0,"Core answer is relevant, but it adds several specific cultural examples/claims beyond what is clearly needed and supported by the retrieved context."
+43,What are some major categories of foods commonly used as protein sources in vegetarian cuisine?,2,2,2,2,100.0,100.0,100.0,100.0,
+44,How have religious traditions influenced the development of vegetarian cuisine in South Asia?,0,2,0,0,0.0,100.0,0.0,0.0,"No answer was generated despite retrieved context directly supporting the role of Hindu, Jain, and Buddhist traditions."
+45,Why does vegetarian cuisine include such a wide variety of dishes despite excluding meat?,2,2,2,2,100.0,100.0,100.0,100.0,
+46,What were the main political and economic grievances that fueled the Telangana movement against the erstwhile Andhra Pradesh?,2,2,2,2,100.0,100.0,100.0,100.0,
+47,What was the significance of the Gentlemen's Agreement of 1956 in the context of the Telangana movement?,0,2,2,2,0.0,100.0,100.0,100.0,Appropriate abstention because the retrieved chunks do not establish the Gentlemen's Agreement's safeguards.
+48,How did the 1969 Jai Telangana movement differ from the later phase of the Telangana statehood movement?,2,2,2,2,100.0,100.0,100.0,100.0,
+49,What role did the Telangana Rashtra Samithi play in the later stages of the movement?,2,2,2,2,100.0,100.0,100.0,100.0,
+50,What political development ultimately brought the Telangana movement's demand for statehood to fruition?,2,2,2,2,100.0,100.0,100.0,100.0,

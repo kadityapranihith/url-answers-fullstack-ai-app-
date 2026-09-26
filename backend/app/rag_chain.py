@@ -225,3 +225,22 @@ def get_rag_response(
     response = llm.invoke(final_prompt)
 
     return response.content
+def stream_rag_response(collection_name, question, history=""):
+    docs = retrieve_documents(
+        collection_name=collection_name,
+        question=question
+    )
+
+    context = "\n\n".join(
+        doc.page_content for doc in docs
+    )
+
+    final_prompt = prompt.format(
+        history=history,
+        context=context,
+        question=question
+    )
+
+    for chunk in llm.stream(final_prompt):
+        if chunk.content:
+            yield chunk.content

@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
 import cohere
 
+load_dotenv()
 
 api_key = os.getenv("COHERE_API_KEY")
 

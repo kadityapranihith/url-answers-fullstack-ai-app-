@@ -1,0 +1,8 @@
+Metric,Dense Retrieval,Reranker
+Hit@1,64%,86%
+Hit@3,92%,90%
+Hit@5,92%,94%
+Hit@10,94%,94%
+MRR,0.7733,0.8900
+Precision@10,30.8%,30.8%
+NDCG@10,0.7768,0.8551

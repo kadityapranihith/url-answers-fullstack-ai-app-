@@ -4,14 +4,18 @@ import uuid
 from fastapi import Request
 from app.auth import verify_token
 from fastapi.middleware.cors import CORSMiddleware
-from app.rag_chain import create_vectorstore_from_urls, get_rag_response,qdrant_client
+from app.rag_chain import (
+    create_vectorstore_from_urls,
+    stream_rag_response,
+    qdrant_client
+)
 from app.database import (
     create_chat,
     save_message,
     get_user_chats,
     get_chat_history,
 )
-
+from fastapi.responses import StreamingResponse
 app = FastAPI()
 
 app.add_middleware(
@@ -82,40 +86,48 @@ def chat(request: ChatRequest, req: Request):
 
     user_id = verify_token(req)
 
-    # Get vectorstore
-
-
-
-    # -----------------------------
     # Load previous chat messages
-    # -----------------------------
-
     chat_data = get_chat_history(user_id, request.chat_id)
     messages = chat_data.get("messages", [])
 
     # Build conversation history
     history = ""
 
-    for m in messages[-6:]:  # last 6 messages
+    for m in messages[-6:]:
         history += f"{m['role']}: {m['content']}\n"
 
-
-    # -----------------------------
-    # Generate response
-    # -----------------------------
-
-    response = get_rag_response(
+    # Save user message immediately
+    save_message(
+        user_id,
         request.chat_id,
-        request.message,
-        history
+        "user",
+        request.message
     )
 
-    # Save messages
-    save_message(user_id, request.chat_id, "user", request.message)
-    save_message(user_id, request.chat_id, "assistant", response)
+    def generate():
 
-    return {"response": response}
+        full_response = ""
 
+        for chunk in stream_rag_response(
+            collection_name=request.chat_id,
+            question=request.message,
+            history=history
+        ):
+            full_response += chunk
+            yield chunk
+
+        # Save complete assistant response after streaming finishes
+        save_message(
+            user_id,
+            request.chat_id,
+            "assistant",
+            full_response
+        )
+
+    return StreamingResponse(
+        generate(),
+        media_type="text/plain"
+    )
 
 # -----------------------------
 # Get All Chats

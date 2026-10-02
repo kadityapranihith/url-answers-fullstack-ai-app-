@@ -1,18 +1,16 @@
 import os
 import gc
 import time
+import psutil
 from dotenv import load_dotenv
-
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.embeddings import JinaEmbeddings
-
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
-
 from app.reranker import rerank_documents
 
 
@@ -109,11 +107,19 @@ def get_embedding_model():
 # Create Vectorstore from URLs
 # --------------------------------------------------
 
+def log_memory(label):
+    process = psutil.Process(os.getpid())
+    ram_mb = process.memory_info().rss / (1024 * 1024)
+    print(f"[MEMORY] {label}: {ram_mb:.2f} MB")
+
+
 def create_vectorstore_from_urls(
     urls,
     collection_name
 ):
     total_start = time.perf_counter()
+
+    log_memory("START")
 
     # --------------------------------------------------
     # 1. Load URLs
@@ -123,6 +129,8 @@ def create_vectorstore_from_urls(
 
     loader = WebBaseLoader(urls)
     docs = loader.load()
+
+    log_memory("AFTER WebBaseLoader.load()")
 
     load_ms = (time.perf_counter() - start) * 1000
 
@@ -139,10 +147,20 @@ def create_vectorstore_from_urls(
 
     chunks = splitter.split_documents(docs)
 
+    log_memory("AFTER split_documents()")
+
     for i, chunk in enumerate(chunks):
         chunk.metadata["chunk_id"] = i
 
+    log_memory("AFTER metadata loop")
+
     chunk_ms = (time.perf_counter() - start) * 1000
+
+    # docs are no longer needed after chunks are created
+    del docs
+    gc.collect()
+
+    log_memory("AFTER deleting docs + gc.collect()")
 
     # --------------------------------------------------
     # 3. Create Qdrant collection if needed
@@ -159,6 +177,8 @@ def create_vectorstore_from_urls(
             )
         )
 
+    log_memory("AFTER Qdrant collection creation")
+
     collection_ms = (time.perf_counter() - start) * 1000
 
     # --------------------------------------------------
@@ -167,13 +187,18 @@ def create_vectorstore_from_urls(
 
     start = time.perf_counter()
 
+    log_memory("BEFORE QdrantVectorStore.from_documents()")
+    print("Chunks:", len(chunks))
     QdrantVectorStore.from_documents(
         documents=chunks,
         embedding=get_embedding_model(),
         url=os.getenv("QDRANT_URL"),
         api_key=os.getenv("QDRANT_API_KEY"),
-        collection_name=collection_name
+        collection_name=collection_name,
+        batch_size=75
     )
+
+    log_memory("AFTER QdrantVectorStore.from_documents()")
 
     embedding_qdrant_ms = (time.perf_counter() - start) * 1000
 
@@ -195,15 +220,13 @@ def create_vectorstore_from_urls(
     print(
         f"[INGEST INFO] "
         f"URLs={len(urls)} | "
-        f"Documents={len(docs)} | "
         f"Chunks={len(chunks)}"
     )
 
-    del docs
     del chunks
     gc.collect()
 
-
+    log_memory("FINAL")
 # --------------------------------------------------
 # Retrieval
 # --------------------------------------------------

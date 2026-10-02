@@ -1,4 +1,5 @@
 const API_BASE_URL = "https://url-answers.onrender.com";
+
 // ─── State ────────────────────────────────────────────────────────────────────
 let chats = [];
 let currentChatId = null;
@@ -178,15 +179,69 @@ async function apiGetChat(chatId) {
   return wrapped.data;
 }
 
-async function apiSendMessage(chatId, message) {
+async function apiSendMessage(chatId, message, onChunk) {
   const res = await fetch(`${API_BASE_URL}/chat`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-    body: JSON.stringify({ chat_id: chatId, message }),
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders()
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      message
+    })
   });
-  const wrapped = await safeJson(res);
-  if (!wrapped.ok) throw new Error(wrapped.data.detail || "Failed to send message");
-  return wrapped.data;
+
+  if (!res.ok) {
+    let errorMessage = "Failed to send message";
+
+    try {
+      const data = await res.json();
+      errorMessage = data.detail || errorMessage;
+    } catch {
+      // Ignore JSON parsing failure
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  if (!res.body) {
+    throw new Error("Streaming response is not supported by this browser.");
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+
+  let fullResponse = "";
+
+  while (true) {
+    const { value, done } = await reader.read();
+
+    if (done) break;
+
+    const chunk = decoder.decode(value, { stream: true });
+
+    if (chunk) {
+      fullResponse += chunk;
+
+      if (onChunk) {
+        onChunk(chunk, fullResponse);
+      }
+    }
+  }
+
+  // Decode any remaining bytes
+  const remaining = decoder.decode();
+
+  if (remaining) {
+    fullResponse += remaining;
+
+    if (onChunk) {
+      onChunk(remaining, fullResponse);
+    }
+  }
+
+  return fullResponse;
 }
 
 async function apiDeleteChat(chatId) {
@@ -347,40 +402,91 @@ async function loadChat(chatId) {
 
 async function handleSendMessage() {
   const text = messageInputEl.value.trim();
+
   if (!text || !currentChatId || isSending) return;
 
   hideChatError();
   setSending(true);
   showMessages();
 
-  const currentMessages = Array.from(chatMessagesEl.querySelectorAll(".message-row")).map((row) => {
-    const bubble = row.querySelector(".message-bubble");
-    return {
-      role: row.classList.contains("user") ? "user" : "assistant",
-      content: bubble?.textContent || "",
-    };
+  const currentMessages =
+    Array.from(
+      chatMessagesEl.querySelectorAll(".message-row")
+    ).map((row) => {
+      const bubble = row.querySelector(".message-bubble");
+
+      return {
+        role: row.classList.contains("user")
+          ? "user"
+          : "assistant",
+        content: bubble?.textContent || ""
+      };
+    });
+
+  // Add user message
+  currentMessages.push({
+    role: "user",
+    content: text
   });
 
-  currentMessages.push({ role: "user", content: text });
+  // Add empty assistant message
+  currentMessages.push({
+    role: "assistant",
+    content: ""
+  });
+
   renderMessages(currentMessages);
+
   messageInputEl.value = "";
   autoResizeTextarea(messageInputEl);
   sendBtn.disabled = true;
   scrollToBottom();
 
   try {
-    const data = await apiSendMessage(currentChatId, text);
-    const reply = data.response || "";
-    currentMessages.push({ role: "assistant", content: reply });
-    renderMessages(currentMessages);
+    const assistantRows =
+      chatMessagesEl.querySelectorAll(".message-row.ai");
 
-    const firstUser = currentMessages.find((m) => m.role === "user");
+    const assistantBubble =
+      assistantRows[assistantRows.length - 1]
+        ?.querySelector(".message-bubble");
+
+    const reply = await apiSendMessage(
+      currentChatId,
+      text,
+      (_chunk, fullResponse) => {
+        // Display response as it arrives
+        if (assistantBubble) {
+          assistantBubble.textContent = fullResponse;
+        }
+
+        scrollToBottom();
+      }
+    );
+
+    // Store final response locally
+    currentMessages[currentMessages.length - 1].content = reply;
+
+    const firstUser = currentMessages.find(
+      (m) => m.role === "user"
+    );
+
     if (firstUser?.content) {
-      chatTitleEl.textContent = firstUser.content.trim().slice(0, 80);
+      chatTitleEl.textContent =
+        firstUser.content.trim().slice(0, 80);
     }
+
   } catch (err) {
     console.error("sendMessage:", err);
-    showChatError(err.message || "Failed to send message. Please try again.");
+
+    // Remove empty/partial assistant message on failure
+    currentMessages.pop();
+    renderMessages(currentMessages);
+
+    showChatError(
+      err.message ||
+      "Failed to send message. Please try again."
+    );
+
   } finally {
     setSending(false);
   }
@@ -620,7 +726,6 @@ firebase.auth().onAuthStateChanged(async (user) => {
 loginForm.addEventListener("submit", handleLogin);
 logoutBtn.addEventListener("click", handleLogout);
 authToggleBtn.addEventListener("click", toggleAuthMode);
-
 messageInputEl.addEventListener("input", () => {
   autoResizeTextarea(messageInputEl);
   sendBtn.disabled = isSending || !messageInputEl.value.trim() || !currentChatId;

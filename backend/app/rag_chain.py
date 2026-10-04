@@ -27,7 +27,8 @@ load_dotenv()
 
 qdrant_client = QdrantClient(
     url=os.getenv("QDRANT_URL"),
-    api_key=os.getenv("QDRANT_API_KEY")
+    api_key=os.getenv("QDRANT_API_KEY"),
+    timeout=60.0 
 )
 
 
@@ -110,7 +111,7 @@ def get_embedding_model():
 def log_memory(label):
     process = psutil.Process(os.getpid())
     ram_mb = process.memory_info().rss / (1024 * 1024)
-    print(f"[MEMORY] {label}: {ram_mb:.2f} MB")
+    print(f"[MEMORY] {label}: {ram_mb:.2f} MB", flush=True)
 
 
 def create_vectorstore_from_urls(
@@ -195,7 +196,8 @@ def create_vectorstore_from_urls(
         url=os.getenv("QDRANT_URL"),
         api_key=os.getenv("QDRANT_API_KEY"),
         collection_name=collection_name,
-        batch_size=75
+        batch_size=75,
+        timeout=80
     )
 
     log_memory("AFTER QdrantVectorStore.from_documents()")
